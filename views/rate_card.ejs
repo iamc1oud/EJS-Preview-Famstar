@@ -4,13 +4,31 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       body {
-        max-width: 800px;
+        max-width: 720px;
       }
 
       .left-pad {
         text-align: left;
         vertical-align: middle;
         padding-left: 50px;
+      }
+
+      #table-header {
+        font-size: 16px;
+        font-weight: normal;
+        font-family: Arial, Helvetica, sans-serif
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+      }
+      .grid-item {
+        padding: 20px;
+        color: white;
+        font-size: 16px;
+        text-align: center;
       }
 
     </style>
@@ -21,62 +39,126 @@
     <!-- Center align table -->
 
     <div class="flex p-4" style="background-color: rgb(229 231 235)">
-      <!-- Location -->
-      <div
-        style="
-          width: 40%;
-          vertical-align: middle;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
-        <div
-          style="display: flex; align-items: center; justify-content: center"
-        >
-          <img src="location.png" alt="" />
-          <p class="font-bold"><%= profileInfo.location %></p>
-        </div>
-      </div>
 
       <!-- Basic Profile info -->
-      <table>
+      <table style="width: 100%;">
         <tr>
-          <td class="left-pad">
+          <td class="left-pad" style="text-align: center; display: flex;">
+            
             <img
               class="rounded-full"
               src="<%= profileInfo.profilePicture %>"
-              width="200"
-              height="200"
+              width="120"
+              height="120"
             />
+            <div>
+              <p class="font-bold text-xl"><%= profileInfo.name %></p>
+              <p class="text-base"><%= profileInfo.email %></p>
+              <p class="text-base"><%= profileInfo.location %></p>
+            </div>
           </td>
-
-          <td class="left-pad">
-            <p class="font-bold text-xl"><%= profileInfo.name %></p>
-            <p class="text-base"><%= profileInfo.email %></p>
+          <td>
           </td>
         </tr>
       </table>
     </div>
 
-    <!-- Instagram Metric -->
-    <div class="flex" style="background-color: rgb(247, 186, 181)">
-      <table>
+    <!-- Instagram Basic Metrics -->
+
+    <div style="background-color: rgb(179, 36, 130)">
+      <table style="width: 100%">
         <tr>
-            <td style="background-color: rgb(179, 36, 130); padding: 24px; text-align: center;">
-                <img src="instagram.svg" alt="" height="40" width="40" />
-                <p class="pt-2 font-bold" style="color: white;">157k</p>
-            </td>
-            <td style="padding-left: 20px;">
-                <p class="font-bold" style="color: rgb(179, 36, 130);"><%= profileInfo.igId %></p>
-                <p class="font-thin" style="color: rgb(128, 117, 117);">Instagram</p>
-            </td>
-            <td style="text-align: center; padding-left: 20px;">
-                <p class="font-bold" style="color: black;"><%= metrics.engagementRate %>%</p>
-                <p class="font-thin" style="color: rgb(128, 117, 117);">Avg. Engagement Rate</p>
-            </td>
+          <td
+            style="
+              background-color: rgb(179, 36, 130);
+              padding: 24px;
+              text-align: center;
+            "
+          >
+            <img src="instagram.svg" alt="" height="40" width="40" />
+            <p class="pt-2 font-bold" style="color: white">157k</p>
+          </td>
+          <td style="min-width: 100px">
+            <p class="font-bold" style="color: white; line-height: 1em">
+              <%= profileInfo.igId %>
+            </p>
+            <p class="font-thin" style="color: white">Instagram</p>
+          </td>
+          <td style="padding-left: 20px; min-width: 200px; text-align: center">
+            <p class="font-bold" style="color: white">
+              <%= metrics.engagementRate %>%
+            </p>
+            <p class="font-thin" style="color: white">Avg. Engagement Rate</p>
+          </td>
+          <td style="padding-left: 20px; min-width: 200px; text-align: center">
+            <p class="font-bold" style="color: white">
+              <%= metrics.followers %>
+            </p>
+            <p class="font-thin" style="color: white">Followers</p>
+          </td>
         </tr>
       </table>
     </div>
+    <!-- Instagram audience country, gender, city stats -->
+    <div class="p-6">
+      <p>Engaged Audience</p>
+        
+      <table style="width: 100%; text-align: center;">
+      <!-- Table Header -->
+     <thead>
+        <th id="table-header">Country</th>
+        <th id="table-header">Cities</th>
+        <th id="table-header">Gender</th>
+      </thead>
+        <tr>
+          <td>
+            <div>
+              <!-- Iterate over object using For loop -->
+              <% for (var key in metrics.audience_country) { %>
+                 <p class="font-thin"><%= key %> </p>
+              <% } %>
+            </div>
+          </td>
+          <td >
+            <div>
+              <!-- Iterate over first four object using For loop -->
+              <% for (var key in metrics.audience_city) { %>
+                 <p class="font-thin"><%= key.split(",")[0] %></p>
+              <% } %>
+            </div>
+          </td>
+          <td>
+            <p>
+              <!-- Iterate over first four object using For loop -->
+              <div>
+                <p><%= metrics.audience_gender_age.female_percentage %>%</p>
+                <p class="font-thin" style="font-size: 12px;">Female</p>
+              </div>
+              <div>
+                <p><%= metrics.audience_gender_age.male_percentage %>%</p>
+                <p class="font-thin" style="font-size: 12px;">Male</p>
+              </div>
+            </p>
+          </td>
+        </tr>
+      </table>
+      </div>
+
+      <!-- Commercials -->
+      <div class="p-6" style="background-color: #312960;">
+        <p class="text-white">Commercials</p>
+        <div class="grid-container">
+          <!-- Iterate over array of object -->
+          <% for (var i = 0; i < costing.length; i++) { %>
+            <div class="grid-item">
+              <!-- Rupee symbol -->
+              
+              <p class="font-thin"><span class="font-thin">&#8377;</span> <%= costing[i].amount %></p>
+              <p class="font-thin"><%= costing[i].item %></p>
+            </div>
+          <% } %>
+         
+        </div>
+      </div>
   </body>
 </html>
