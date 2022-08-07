@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        max-width: 800px;
+      }
+
+      .left-pad {
+        text-align: left;
+        vertical-align: middle;
+        padding-left: 50px;
+      }
+
+    </style>
+  </head>
+  <body class="center">
+    <!-- Top Section -->
+    <!-- It has information about location and profile info -->
+    <!-- Center align table -->
+
+    <div class="flex p-4" style="background-color: rgb(229 231 235)">
+      <!-- Location -->
+      <div
+        style="
+          width: 40%;
+          vertical-align: middle;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <img src="location.png" alt="" />
+          <p class="font-bold"><%= profileInfo.location %></p>
+        </div>
+      </div>
+
+      <!-- Basic Profile info -->
+      <table>
+        <tr>
+          <td class="left-pad">
+            <img
+              class="rounded-full"
+              src="<%= profileInfo.profilePicture %>"
+              width="200"
+              height="200"
+            />
+          </td>
+
+          <td class="left-pad">
+            <p class="font-bold text-xl"><%= profileInfo.name %></p>
+            <p class="text-base"><%= profileInfo.email %></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Instagram Metric -->
+    <div class="flex" style="background-color: rgb(247, 186, 181)">
+      <table>
+        <tr>
+            <td style="background-color: rgb(179, 36, 130); padding: 24px; text-align: center;">
+                <img src="instagram.svg" alt="" height="40" width="40" />
+                <p class="pt-2 font-bold" style="color: white;">157k</p>
+            </td>
+            <td style="padding-left: 20px;">
+                <p class="font-bold" style="color: rgb(179, 36, 130);"><%= profileInfo.igId %></p>
+                <p class="font-thin" style="color: rgb(128, 117, 117);">Instagram</p>
+            </td>
+            <td style="text-align: center; padding-left: 20px;">
+                <p class="font-bold" style="color: black;"><%= metrics.engagementRate %>%</p>
+                <p class="font-thin" style="color: rgb(128, 117, 117);">Avg. Engagement Rate</p>
+            </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
