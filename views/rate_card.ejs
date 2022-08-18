@@ -46,7 +46,7 @@
           <td class="left-pad" style="text-align: center; display: flex;">
             
             <img
-              class="rounded-full"
+              style="border-radius: 50%;"
               src="<%= profileInfo.profilePicture %>"
               width="120"
               height="120"
@@ -75,7 +75,7 @@
               text-align: center;
             "
           >
-            <img src="instagram.svg" alt="" height="40" width="40" />
+             <img src="https://famstar-assets.s3.ap-south-1.amazonaws.com/instagram.svg" alt="" height="40" width="40" />
             <p class="pt-2 font-bold" style="color: white">157k</p>
           </td>
           <td style="min-width: 100px">
@@ -147,18 +147,21 @@
       <!-- Commercials -->
       <div class="p-6" style="background-color: #312960;">
         <p class="text-white">Commercials</p>
-        <div class="grid-container">
+        <table class="grid-container">
           <!-- Iterate over array of object -->
           <% for (var i = 0; i < costing.length; i++) { %>
-            <div class="grid-item">
+            <!-- If i%3==0 add new row -->
+            <% if (i % 3 == 0) { %>
+              <tr>
+            <% } %>
+            <td class="grid-item">
               <!-- Rupee symbol -->
-              
               <p class="font-thin"><span class="font-thin">&#8377;</span> <%= costing[i].amount %></p>
               <p class="font-thin"><%= costing[i].item %></p>
-            </div>
+            </td>
           <% } %>
          
-        </div>
+        </table>
       </div>
   </body>
 </html>
