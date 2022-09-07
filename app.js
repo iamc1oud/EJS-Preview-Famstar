@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
@@ -24,18 +26,21 @@ app.get("/", (req, res) => {
       { amount: 4000, item: "Video Post" },
       { amount: 1000, item: "Carousel Post" },
       { amount: 1000, item: "Video Story with Swipe Up" },
-      { amount: 10, item: "Video Story without Swipe Up" },
-      { amount: 1, item: "Static Story with Swipe Up" },
-      { amount: 2, item: "Static Story without Swipe Up" },
-      { amount: 1, item: "IGTV" },
-      { amount: 2, item: "Live" },
+      { amount: 1000, item: "Video Story without Swipe Up" },
+      { amount: 1000, item: "Static Story with Swipe Up" },
+      { amount: 2000, item: "Static Story without Swipe Up" },
+      { amount: 1000, item: "IGTV" },
+      { amount: 2000, item: "Live" },
     ],
+
+    
+
     metrics: {
       engagementRate: "5.62",
-      followers: "23,456",
-      audience_country: { AU: 3, IN: 318, MT: 1, NG: 2},
+      followers: "34,610",
+      audience_country: { Australia: 3, India: 318, USA: 1, Nigeria: 2},
       audience_city: {
-        "Thane, Maharashtra": 2,
+        "Thane, Maharashtra": 2,   
         "Jagadhri, Haryana": 1,
         "Chandigarh, Chandigarh": 26,
         "Faizabad, Uttar Pradesh": 1,
@@ -44,30 +49,35 @@ app.get("/", (req, res) => {
         female_percentage: "88",
         male_percentage: "12",
         female: {
-          "13-17": 1,
-          "18-24": 69,
-          "25-34": 32,
-          "35-44": 3,
-          "45-54": 6,
-          "55-64": 2,
+          "13-17": 1000,
+          "18-24": 6900,
+          "25-34": 3200,
+          "35-44": 3000,
+          "45-54": 600,
+          "55-64": 200,
         },
         male: {
-          "13-17": 4,
-          "18-24": 100,
-          "25-34": 51,
-          "35-44": 6,
-          "45-54": 5,
-          "55-64": 1,
+          "13-17": 4000,
+          "18-24": 1000,
+          "25-34": 5100,
+          "35-44": 600,
+          "45-54": 500,
+          "55-64": 1000,
         },
         unknown: {
-          "13-17": 4,
-          "18-24": 31,
-          "25-34": 9,
-          "35-44": 3,
-          "45-54": 1,
+          "13-17": 400,
+          "18-24": 310,
+          "25-34": 900,
+          "35-44": 3000,
+          "45-54": 1000,
         },
+        
       },
+    
     },
+
+    
+    
   });
 });
 
